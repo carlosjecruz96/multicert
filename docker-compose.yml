@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      args:
+        JAR_FILE: /multicert-0.0.1-SNAPSHOT.jar
+    restart: always
+    depends_on:
+      - myapp-mysql
+    environment:
+      - DATABASE_HOST=myapp-mysql
+      - DATABASE_USER=user
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=pessoa_directory
+      - DATABASE_PORT=3306
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8080:8080
+
+  myapp-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=pessoa_directory
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3306:3306
