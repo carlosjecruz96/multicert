@@ -2,7 +2,7 @@
 
 Endpoint para listar clientes
 curl -X GET \
-http://18.133.188.48:8080/pessoas
+http://3.8.89.109:8080/pessoas
 
 
 
